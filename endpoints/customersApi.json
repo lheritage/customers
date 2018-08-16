@@ -1,0 +1,120 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Customers API",
+    "version": "1.0",
+    "description": "Produces customer list"
+  },
+  "host": "forrester.axway.com",
+  "paths": {
+    "/customers": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/customerlist"
+            },
+            "examples": {
+              "application/json": {
+                "customers": [
+                  {
+                    "customer": {
+                      "customerid": "2342342",
+                      "name": "Sam Smith"
+                    }
+                  },
+                  {
+                    "customer": {
+                      "customerid": "3451315",
+                      "name": "Judy Jones"
+                    }
+                  },
+                  {
+                    "customer": {
+                      "customerid": "45235245",
+                      "name": "Dale Denver"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "summary": "List customers",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "revenue",
+            "type": "string",
+            "default": "60000"
+          },
+          {
+            "in": "query",
+            "name": "country",
+            "type": "string",
+            "default": "france"
+          }
+        ],
+        "x-flow": "customersApi-getCustomers"
+      },
+      "options": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            },
+            "headers": {
+              "allow": {
+                "type": "string",
+                "default": "OPTION, HEAD, GET"
+              }
+            }
+          }
+        },
+        "x-flow": "customersApi-optionsCustomers"
+      },
+      "head": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "x-flow": "customersApi-headCustomers"
+      }
+    }
+  },
+  "definitions": {
+    "customerlist": {
+      "type": "object",
+      "title": "customerlist",
+      "properties": {
+        "customers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "customer": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "customerid": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
